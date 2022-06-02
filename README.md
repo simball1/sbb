@@ -4,7 +4,7 @@
 - Windows
     - Spring Tool Suite 4 
     - Version: 4.1.2.RELEASE
-    - 
+
 - Java Version : 1.8.0.291
 - Spring Boot Version : 2.7.0
 
