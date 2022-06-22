@@ -24,22 +24,22 @@ public class Answer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id; // 답변 고유번호
 	
 	@Column(columnDefinition = "TEXT")
-	private String content;
+	private String content; // 내용
 	
-	private LocalDateTime createDate;
-	
-	@ManyToOne
-	private Question question;
+	private LocalDateTime createDate; // 생성일시
 	
 	@ManyToOne
-	private SiteUser author;
+	private Question question; // 해당질문
 	
-	private LocalDateTime modifyDate;
+	@ManyToOne
+	private SiteUser author; // 회원정보
+	
+	private LocalDateTime modifyDate; // 수정일시
 	
 	@ManyToMany
-	Set<SiteUser> voter;
+	Set<SiteUser> voter; // 추천인목록
 
 }
