@@ -14,10 +14,8 @@ import org.springframework.data.annotation.CreatedDate;
 import com.mysite.sbb.question.Question;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
 @Getter
 @Setter
 @Entity
