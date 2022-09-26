@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 
-	private final UserRepository userRepository;
+	private final UserRepository userRepository;	
 	private final PasswordEncoder passwordEncoder;
 	
 	public SiteUser create(String username, String email, String password) {

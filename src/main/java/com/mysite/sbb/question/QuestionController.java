@@ -43,11 +43,12 @@ public class QuestionController {
 	}
 	
 	@PostMapping("/create")
-	public String create(@Valid QuestionForm questionForm, BindingResult bindingResult) {
+	public String create(@Valid QuestionForm questionForm, BindingResult bindingResult) {	
 		if (bindingResult.hasErrors()) {
 			return "question_form";
 		}
 		this.QuestionService.create(questionForm.getSubject(), questionForm.getContent());
 		return "redirect:/question/list";
 	}
+	
 }
