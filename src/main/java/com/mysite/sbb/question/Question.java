@@ -9,11 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.annotation.CreatedDate;
 
 import com.mysite.sbb.answer.Answer;
+import com.mysite.sbb.user.SiteUser;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,11 +43,15 @@ public class Question {
 	@OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
 	private List<Answer> answerList;
 	
+	@ManyToOne
+	private SiteUser author;
+	
 	public Question(QuestionDto questionDto) {
 		this.id = questionDto.getId();
 		this.subject = questionDto.getSubject();
 		this.content = questionDto.getContent();
 		this.createDate = questionDto.getCreateDate();
 		this.answerList = questionDto.getAnswerList();
+		this.author = questionDto.getAuthor();
 	}
 }
