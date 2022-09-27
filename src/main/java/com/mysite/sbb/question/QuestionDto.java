@@ -19,6 +19,7 @@ public class QuestionDto {
 	private LocalDateTime createDate;
 	private List<Answer> answerList;
 	private SiteUser author;
+	private LocalDateTime modifyDate;
 	
 	public QuestionDto(Question question) {
 		this.id = question.getId();
@@ -27,5 +28,6 @@ public class QuestionDto {
 		this.createDate = question.getCreateDate();
 		this.answerList = question.getAnswerList();
 		this.author = question.getAuthor();
+		this.modifyDate = question.getModifyDate();
 	}
 }

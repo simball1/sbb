@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.mysite'
-version = '0.0.15'
+version = '0.0.16'
 sourceCompatibility = '1.8'
 
 configurations {

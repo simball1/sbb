@@ -46,6 +46,8 @@ public class Question {
 	@ManyToOne
 	private SiteUser author;
 	
+	private LocalDateTime modifyDate;
+	
 	public Question(QuestionDto questionDto) {
 		this.id = questionDto.getId();
 		this.subject = questionDto.getSubject();

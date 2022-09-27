@@ -48,4 +48,17 @@ public class QuestionService {
 		question.setAuthor(author);
 		this.questionRepository.save(question);
 	}
+	
+	public void modify(QuestionDto questionDto, String subject, String content) {
+		Question question = this.questionRepository.findById(questionDto.getId()).get();
+		question.setSubject(subject);
+		question.setContent(content);
+		question.setModifyDate(LocalDateTime.now());
+		this.questionRepository.save(question);
+	}
+	
+	public void delete(QuestionDto questionDto) {
+		Question question = this.questionRepository.findById(questionDto.getId()).get();
+		this.questionRepository.delete(question);
+	}
 }

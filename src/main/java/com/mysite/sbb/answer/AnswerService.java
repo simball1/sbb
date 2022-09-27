@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.mysite.sbb.DataNotFoundException;
 import com.mysite.sbb.question.Question;
 import com.mysite.sbb.question.QuestionRepository;
 import com.mysite.sbb.user.SiteUser;
@@ -19,7 +20,6 @@ public class AnswerService {
 	private final QuestionRepository questionRepository;
 
 	public void create(Integer questionId, String content, SiteUser author) {
-		
 		Optional<Question> oq = this.questionRepository.findById(questionId);
 		Answer answer = new Answer();
 		answer.setContent(content);
@@ -27,6 +27,27 @@ public class AnswerService {
 		answer.setQuestion(oq.get());
 		answer.setAuthor(author);
 		this.answerRepository.save(answer);
-
 	}
+	
+	public AnswerDto getAnswer(Integer id) {
+		Optional<Answer> oa = this.answerRepository.findById(id);
+		if(oa.isPresent()) {
+			return new AnswerDto(oa.get());
+		} else {
+			throw new DataNotFoundException("answer not found");
+		}
+	}
+	
+	public void modify(AnswerDto answerDto, String content) {
+		Answer answer = this.answerRepository.findById(answerDto.getId()).get();
+		answer.setContent(content);
+		answer.setModifyDate(LocalDateTime.now());
+		this.answerRepository.save(answer);
+	}
+	
+	public void delete(AnswerDto answerDto) {
+		Answer answer = this.answerRepository.findById(answerDto.getId()).get();
+		this.answerRepository.delete(answer);
+	}
+	
 }
