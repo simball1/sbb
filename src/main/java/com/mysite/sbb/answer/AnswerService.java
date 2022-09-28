@@ -50,4 +50,10 @@ public class AnswerService {
 		this.answerRepository.delete(answer);
 	}
 	
+	public void vote(AnswerDto answerDto, SiteUser siteUser) {
+		Answer answer = this.answerRepository.findById(answerDto.getId()).get();
+		answer.getVoter().add(siteUser);
+		this.answerRepository.save(answer);
+	}
+	
 }

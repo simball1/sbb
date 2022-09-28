@@ -2,6 +2,7 @@ package com.mysite.sbb.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -48,6 +50,9 @@ public class Question {
 	
 	private LocalDateTime modifyDate;
 	
+	@ManyToMany
+	Set<SiteUser> voter;
+	
 	public Question(QuestionDto questionDto) {
 		this.id = questionDto.getId();
 		this.subject = questionDto.getSubject();
@@ -55,5 +60,6 @@ public class Question {
 		this.createDate = questionDto.getCreateDate();
 		this.answerList = questionDto.getAnswerList();
 		this.author = questionDto.getAuthor();
+		this.voter = questionDto.getVoter();
 	}
 }

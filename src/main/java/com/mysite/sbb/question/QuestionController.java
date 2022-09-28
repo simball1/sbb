@@ -54,7 +54,7 @@ public class QuestionController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create")
 	public String create(@Valid QuestionForm questionForm, BindingResult bindingResult,
-			Principal principal) {	
+			Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "question_form";
 		}
@@ -102,4 +102,12 @@ public class QuestionController {
 		return "redirect:/";
 	}
 	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/vote/{id}")
+	public String vote(Principal principal, @PathVariable("id") Integer id) {
+		QuestionDto questionDto = this.questionService.getQuestion(id);
+		SiteUser siteUser = this.userService.getUser(principal.getName());
+		this.questionService.vote(questionDto, siteUser);
+		return String.format("redirect:/question/detail/%s", id);
+	}
 }

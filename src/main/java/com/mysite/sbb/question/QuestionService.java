@@ -61,4 +61,10 @@ public class QuestionService {
 		Question question = this.questionRepository.findById(questionDto.getId()).get();
 		this.questionRepository.delete(question);
 	}
+	
+	public void vote(QuestionDto questionDto, SiteUser siteUser) {
+		Question question = this.questionRepository.findById(questionDto.getId()).get();
+		question.getVoter().add(siteUser);
+		this.questionRepository.save(question);
+	}
 }

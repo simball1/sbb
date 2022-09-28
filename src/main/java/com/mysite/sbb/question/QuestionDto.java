@@ -2,6 +2,7 @@ package com.mysite.sbb.question;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 import com.mysite.sbb.answer.Answer;
 import com.mysite.sbb.user.SiteUser;
@@ -20,6 +21,7 @@ public class QuestionDto {
 	private List<Answer> answerList;
 	private SiteUser author;
 	private LocalDateTime modifyDate;
+	Set<SiteUser> voter;
 	
 	public QuestionDto(Question question) {
 		this.id = question.getId();
@@ -29,5 +31,6 @@ public class QuestionDto {
 		this.answerList = question.getAnswerList();
 		this.author = question.getAuthor();
 		this.modifyDate = question.getModifyDate();
+		this.voter = question.getVoter();
 	}
 }
