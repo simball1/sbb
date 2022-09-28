@@ -19,7 +19,7 @@ public class AnswerService {
 	private final AnswerRepository answerRepository;
 	private final QuestionRepository questionRepository;
 
-	public void create(Integer questionId, String content, SiteUser author) {
+	public AnswerDto create(Integer questionId, String content, SiteUser author) {
 		Optional<Question> oq = this.questionRepository.findById(questionId);
 		Answer answer = new Answer();
 		answer.setContent(content);
@@ -27,6 +27,7 @@ public class AnswerService {
 		answer.setQuestion(oq.get());
 		answer.setAuthor(author);
 		this.answerRepository.save(answer);
+		return new AnswerDto(answer);
 	}
 	
 	public AnswerDto getAnswer(Integer id) {

@@ -41,8 +41,9 @@ public class AnswerController {
 			return "question_detail";
 		}
 		SiteUser siteUser = this.userService.getUser(principal.getName());
-		this.answerService.create(questionId, answerForm.getContent(), siteUser);
-		return String.format("redirect:/question/detail/%s", questionId);
+		AnswerDto answerDto = this.answerService.create(questionId, answerForm.getContent(), siteUser);
+		return String.format("redirect:/question/detail/%s#answer_%s",
+				answerDto.getQuestion().getId(), answerDto.getId() );
 	}
 	
 	@PreAuthorize("isAuthenticated()")
@@ -69,7 +70,8 @@ public class AnswerController {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
 		}
 		this.answerService.modify(answerDto, answerForm.getContent());
-		return String.format("redirect:/question/detail/%s", answerDto.getQuestion().getId());
+		return String.format("redirect:/question/detail/%s#answer_%s",
+				answerDto.getQuestion().getId(), answerDto.getId());
 	}
 	
 	@PreAuthorize("isAuthenticated()")
@@ -89,6 +91,7 @@ public class AnswerController {
 		AnswerDto answerDto = this.answerService.getAnswer(id);
 		SiteUser siteUser = this.userService.getUser(principal.getName());
 		this.answerService.vote(answerDto, siteUser);
-		return String.format("redirect:/question/detail/%s", answerDto.getQuestion().getId());
+		return String.format("redirect:/question/detail/%s#answer_%s",
+				answerDto.getQuestion().getId(), answerDto.getId());
 	}
 }
