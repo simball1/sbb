@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.mysite'
-version = '0.0.18'
+version = '0.0.19'
 sourceCompatibility = '1.8'
 
 configurations {
@@ -31,6 +31,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+    implementation 'org.commonmark:commonmark:0.18.2'
 }
 
 tasks.named('test') {
